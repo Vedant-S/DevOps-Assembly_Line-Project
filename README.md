@@ -54,3 +54,17 @@ Jenkins can easily distribute work across multiple machines for faster builds, t
 6. Free Open Source:
 
 Jenkins is an open source resource backed by heavy community support.
+
+# Git & Github:
+
+Self-explanatory.
+
+# The Architecture:
+
+1. The DEVELOPER & Local Workspace:
+
+Each developer maintains a local workspace in personal system, and commits the changes/patches to Github through Git as and when required.
+
+2. Github:
+
+
