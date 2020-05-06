@@ -106,3 +106,4 @@ This challenge is solved by Jenkins which serves as a middlemen to automate the 
 ! Vedant Shrivastava | vedantshrivastava466@gmail.com
 + Anmol Sinha        | 1805553@kiit.ac.in
 ```
+[Go to Anmol's repository](https://github.com/anmol-sinha-coder/DevOps-AL_Assignment)
