@@ -33,20 +33,26 @@ As a Continuous Integration tool, Jenkins allows seamless, ongoing development, 
 
 b. What are the Jenkins Features?
 
-1. Easy Installation
+1. Easy Installation:
+
 Jenkins is a platform-agnostic, self-contained Java-based program, ready to run with packages for Windows, Mac OS, and Unix-like operating systems.
 
-2. Easy Configuration
+2. Easy Configuration:
+
 Jenkins is easily set up and configured using its web interface, featuring error checks and a built-in help function.
 
-3. Available Plugins
+3. Available Plugins:
+
 There are hundreds of plugins available in the Update Center, integrating with every tool in the CI and CD toolchain.
 
-4. Extensible
+4. Extensible:
+
 Jenkins can be extended by means of its plugin architecture, providing nearly endless possibilities for what it can do.
 
-5. Easy Distribution
+5. Easy Distribution:
+
 Jenkins can easily distribute work across multiple machines for faster builds, tests, and deployments across multiple platforms.
 
-6. Free Open Source
+6. Free Open Source:
+
 Jenkins is an open source resource backed by heavy community support.
