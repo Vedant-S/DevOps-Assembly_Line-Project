@@ -73,4 +73,9 @@ Once the changes are pushed to Github, the challenge is to have an automated arc
 
 This challenge is solved by Jenkins which serves as a middlemen to automate the deployment process.
 
-
+### Team Members
+----------------------------------
+```diff
+! Vedant Shrivastava | vedantshrivastava466@gmail.com
++ Anmol Sinha        | 1805553@kiit.ac.in
+```
