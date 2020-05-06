@@ -1,4 +1,5 @@
-# DevOps-Assembly_Line-Project
+### DevOps-Assembly_Line-Project
+----------------------------------
 
 "Demand for the development of dependable, functional apps has soared in recent years. In a volatile and highly competitive business environment, the systems created to support, and drive operations are crucial. Naturally, organizations will turn to their in-house development teams to deliver the programs, apps, and utilities on which the business counts to remain relevant."
 
@@ -73,7 +74,7 @@ Once the changes are pushed to Github, the challenge is to have an automated arc
 
 This challenge is solved by Jenkins which serves as a middlemen to automate the deployment process.
 
-https://d2908q01vomqb2.cloudfront.net/7719a1c782a1ba91c031a682a0a2f8658209adbf/2019/10/20/Diagram2.png
+<img src="https://d2908q01vomqb2.cloudfront.net/7719a1c782a1ba91c031a682a0a2f8658209adbf/2019/10/20/Diagram2.png" align="center">
 
 ### Team Members
 ----------------------------------
