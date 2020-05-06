@@ -63,8 +63,14 @@ Self-explanatory.
 
 1. The DEVELOPER & Local Workspace:
 
-Each developer maintains a local workspace in personal system, and commits the changes/patches to Github through Git as and when required.
+Each developer maintains a local workspace in personal system, and commits the changes/patches to Github through Git as and when necessary.
 
 2. Github:
+
+Once the changes are pushed to Github, the challenge is to have an automated architecture or system in order to deploy these changes to the webserver (after testing) in order for the clients to avail the benefits.
+
+3. Jenkins:
+
+This challenge is solved by Jenkins which serves as a middlemen to automate the deployment process.
 
 
