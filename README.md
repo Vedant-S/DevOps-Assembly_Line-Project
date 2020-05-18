@@ -7,6 +7,80 @@ DevOps is a set of practices that combines software development (Dev) and inform
 "That's a lot to ask from DevOps. Fortunately, there are tools to help deliver custom, quality applications in a timely fashion. Jenkins is one of them. Conjuring images of the stereotypical English butler, the tool acts as a "faithful servant" of sorts, easing cumbersome development tasks."
 
 Let us now begin this article to take a deep dive into what is DevOps, its features and architecture. Main Technology/Tools Used:
+__________________________________________________________________________________________________________________
+## <img src="https://i2.wp.com/tennexas.com/wp-content/uploads/2018/09/kubernetes.gif" width=100 height=100>Kubernetes:
+
+        Kubernetes (commonly stylized as 'k8s') is an open-source container-orchestration system for automating application deployment, scaling, and management.
+        It was originally designed by Google, and is now maintained by the Cloud Native Computing Foundation.
+10 Kubernetes Features to Know
+
+### Once you’ve got a grasp on the basics of k8s, you’ll likely want to start taking advantage of the advanced functionality and features.
+
+#### 1. Sidecars
+
+Sidecars are a feature that enables you to run an additional container within a pod to be used as a watcher or proxy. You use this extra container to direct data to be mounted and exposed to other containers in the pod. For example, sidecars could be used to handle logging or authentication for a primary container. Sidecars are useful when you want to allow related processes within a pod to communicate without modifying the primary container source code.
+
+### 2. Helm Charts
+
+Helm is a package manager for Kubernetes that you can use to streamline the installation and management of k8s applications. It uses charts composed of a description of the package and templates containing k8s manifest files. You use manifest files in k8s to create, modify, and delete resources.
+
+Helm enables you to create and share reproducible builds of k8s applications. There are many preconfigured charts available with their dependencies included. Helm charts enable you to deploy applications quickly and easily.
+
+### 3. Custom Controllers
+
+Controllers are loops that regulate the state of your system or resources. With custom controllers, you can accomplish tasks that aren’t included with standard controllers. For example, you can dynamically reload application configurations. Custom controllers can be used with native or custom resource types.
+
+Using these controllers can be an easier way to manage deployments than toolchains. Controllers are a single piece of code while toolchains require familiarity with a number of interfaces.
+
+### 4. Custom Scheduling
+
+K8s comes with a default scheduler for assigning newly created pods to nodes. If this scheduler doesn’t fit your needs or if you would like to run multiple schedulers, you can create a custom scheduler. For example, you could use custom scheduling to facilitate cloud bursting. Cloud bursting is when you move a workload to the cloud in order to meet higher performance or traffic demands.
+
+Custom schedulers can be useful if you have special pods that you want to be handled separately from the others. You can set schedulers according to preference or requirement. Scheduling can rely on strict matching or inclusion and exclusion lists.
+
+### 5. PodDisruptionBudget (PDB)
+
+PDB is a feature that enables you to restrict the number of pods in a cluster that you can stop voluntarily. It helps ensure that a minimum number of pods stay active during tasks like maintenance, auto-scaling down, or upgrading.
+
+With PDB, you can prevent application availability or performance from being affected by administrative tasks. An important limit to keep in mind with PDB is that it does not have an effect if a node fails, only when changes are done voluntarily.
+
+### 6. Go Modules
+
+Go modules are collections of Go packages you can use to manage your application dependencies. Dependencies are bits of code, libraries or frameworks that your application depends on to run. Kubernetes supports Go modules from v1.15 on.
+
+Modules enable you to use multiple versions of the same dependency package or to use dependencies stored in different environments. You can use modules to ease code sharing between distributed teams and minimize the impact of changes in dependencies.
+
+### 7. Taints and Tolerations
+
+Taints and tolerations are a feature that enables you to direct nodes to “attract” or “repel” pods. Taints are assigned to nodes and specify that pods that do not tolerate the taint assigned should not be accepted.
+
+Tolerations are assigned to pods and signal to nodes with matching taints that pods can be accepted. This feature is useful if you need to deploy an application on specific hardware or if you want to dedicate a set of nodes to specific users.
+
+### 8. Cluster Federation
+
+Cluster federation enables you to treat multiple clusters as a single logical cluster, managed through a single control plane. Federation enables clusters running in different locations or environments to be more easily managed. You can use federation to make clusters both highly available and resilient by enabling workloads to be passed between clusters.
+
+### 9. Health Checking
+
+You can check the health of pods or applications in k8s by defining probes to be run by a kubelet agent. You can define readiness, liveness, and startup probes, as follows:
+
+    Readiness—determine if a container can receive requests. If it fails the pod IP address is removed from any endpoints directing traffic to the pod. 
+    Liveness—determine if a container needs to be restarted. Failure means the container is killed and restarted. 
+    Startup—determine if an application within the container has started. In the case of failure, the container is killed and restarted.
+
+You can customize probes with timeouts, retry attempts, minimum success or failure thresholds, and delayed runtimes.
+
+### 10. Feature Gates
+
+Feature gates are a functionality in k8s that you can use to turn features on or off on a node, cluster, or platform level. This functionality enables you to safely test features without risking critical components or your production environment.
+
+You can use gates to control alpha, beta, or stable (GA) features. Each feature gate controls only one feature. Alpha features default to off and beta and GA features default to on. For a full list of gates, feature descriptions and statuses, check the documentation here.
+
+### Conclusion
+
+Kubernetes is a powerful tool for orchestrating container deployments, but it can be challenging to work with. Understanding the functionality and features that are available to you is necessary to get the greatest benefit from this tool.
+
+If any of the features introduced here seem like they might be useful for your deployment, investigate them further. K8s documentation is the best place to start and can often provide a tutorial for configuration or direct you to an external source.
 _______________________________________________________________________________________________________________
 ## <img src="https://miro.medium.com/max/1000/1*E8IgOSkMTpBRs0w0-Zsx2g.gif" width=200 height=100>Docker:
 
