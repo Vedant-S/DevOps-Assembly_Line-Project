@@ -1,4 +1,4 @@
-# DevOps Project 1
+# DevOps Project-1:
 ____________________________________________________________________________________________________________________
 JOB#1
 If Developer push to dev branch then Jenkins will fetch from dev and deploy on dev-docker environment.
@@ -161,3 +161,10 @@ Thus, the Job has been setup. To Trigger the Build, the **QAT** would run the fo
 e.g. `curl --user "admin:admin" http://192.123.32.2932:8080/job/Merge-test/build?token=redhat`
 
 So, after merging, the **lwtest** Job is again fired, so that the updated code can be downloaded in the Server system to run in the web-server.
+
+
+### Author:
+----------------------------------
+```diff
++ Vedant Shrivastava | vedantshrivastava466@gmail.com
+```
