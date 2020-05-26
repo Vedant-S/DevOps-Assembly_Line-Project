@@ -1,6 +1,5 @@
-# Linux World DevOps Project-2:
-----------------------------------
-
+# DevOps Project-2:
+____________________________________________________________________________________________________________________
 ### Prerequisites:
 
 - YOU HAVE TO SET THE BUID TRIGGERS AND WEBHOOK AND DO CONFIGURATIONS IN JENKINS WHILE BUILDING JOBS.
@@ -9,7 +8,7 @@
 
 ### Python Code:
 
-- check_forext.py
+- `check_forext.py`
 
 ```
 import os
@@ -99,9 +98,9 @@ EXPOSE 8080
 `docker build -t imagename:version` folder where the Dockerfile u have copied.
 - For running the conatiner from this image use command:
 `docker run -it -P --name containername imagename:version`
-- U CAN ACCESS THE JENKINS FROM:
+- YOU CAN ACCESS THE JENKINS FROM:
 -base os using `BASEDOCKERHOSTIP:PORT MAPPED`.
-- U can see the port number to which 8080 port of the container is mapped using `netstat -tnlp`.
+- You can see the port number to which 8080 port of the container is mapped using `netstat -tnlp`.
 _________________________________________________________________________________________________________
 
 ### Step-2:
