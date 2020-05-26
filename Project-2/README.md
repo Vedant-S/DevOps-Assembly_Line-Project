@@ -8,7 +8,7 @@ ________________________________________________________________________________
 
 ### Python Code:
 
-- `check_forext.py`
+- `ext_check.py`
 
 ```
 import os
@@ -48,6 +48,8 @@ print("OTHER FILES:",len(all_files)-len(all_phps)-len(all_htmls))
 _________________________________________________________________________________________________________
 
 ### Mail.rc Code:
+
+- `mail.rc`
 
 ```
 set smtp=smtps://smtp.gmail.com:465
@@ -92,7 +94,7 @@ EXPOSE 8080
 - CMD  is used to run a command at the run time not at the build time and only one CMD should be there in one Dockerfile.
 - Expose is used to expose the docker port as docker is isolated we have to enable Port Address Translation and is also used to inform  that which port is exposed to the other techonolgies or tools or commands.
 - COPY is used to copy the file from the base os to image at build time.
-- IN THE DIRECTORY WHERE YOU HAVE COPIED this,  THE `mail.rc` and  `check_forext.py` should be copied there only as per my defined Dockerfile.
+- IN THE DIRECTORY WHERE YOU HAVE COPIED this,  THE `mail.rc` and  `ext_check.py` should be copied there only as per my defined Dockerfile.
 
 - TO BUILD THE IMAGE USE THE COMMAND :
 `docker build -t imagename:version` folder where the Dockerfile u have copied.
@@ -123,9 +125,8 @@ To Pull the Github repo automatically when some developers push repo to Github.
 git push
 ```
 
-- FIRST OF ALL NEED TO CONFIGURE JENKINS i.e. Putting the initial password , and enable `KEY-BASED AUTHENTICATION` with Remote host `ssh-keygen`.(on ssh client side i.e. our jenkin container)
-- Copy this key to remote host ie in case our base os where docker is installed `ssh-copy-id root@IP`.(IP of ur baseos)  
-
+- FIRST OF ALL NEED TO CONFIGURE JENKINS i.e. Putting the initial password , and enable `KEY-BASED AUTHENTICATION` with Remote host `ssh-keygen`. (on ssh client side i.e. our jenkin container)
+- Copy this key to remote host ie in case our base os where docker is installed `ssh-copy-id root@IP`. (IP of ur baseos)  
 - INORDER  TO PREVENT FROM ENTERING THE PASSWORD AGAIN AND AGAIN FOR REMOTE LOGIN.
 - Install Github, BUILD PIPELINE, DELIVERY PIPELINE And GIT PULL REQUEST BUILDER plugins in JENKIN.
 - One should have some knowledge of JENKINS, GITHUB AND GIT AND DOCKER.
