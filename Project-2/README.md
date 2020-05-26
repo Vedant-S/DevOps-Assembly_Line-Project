@@ -5,8 +5,6 @@
 
 - YOU HAVE TO SET THE BUID TRIGGERS AND WEBHOOK AND DO CONFIGURATIONS IN JENKINS WHILE BUILDING JOBS.
 - U SHOULD HAVE KNOWLEDGE ABOUT JENKINS CHAINING, HOW TO USE GITHUB PLUGIN TO INTEGRATE GITHUB, WEBHOOKS, SOME SHELL SCRIPTING KNOWLEDGE(LINUX COMMANDS), DOCKER KNOWLEDGE, GIT HOOKS.
-
-# The Project:-
 ----------------------------------
 
 ### Python Code:
@@ -62,7 +60,7 @@ set nss-config-dir=/etc/pki/nssdb/
 ```
 _________________________________________________________________________________________________________
 
-# Step-1:
+### Step-1:
 Create container image that’s has Jenkins installed using dockerfile.
 
 ### Dockerfile Code & Description:
@@ -106,18 +104,19 @@ EXPOSE 8080
 - U can see the port number to which 8080 port of the container is mapped using `netstat -tnlp`.
 _________________________________________________________________________________________________________
 
-# Step-2:
+### Step-2:
 When we launch this image, it should automatically starts Jenkins service in the container.
 _________________________________________________________________________________________________________
 
-# Step-3:
+### Step-3:
 Create a job chain of job1, job2, job3, job4 and job5 using build pipeline plugin in Jenkins.
 _________________________________________________________________________________________________________
 
 ### Job-1 Description:
 
-- To Pull the Github repo automatically when some developers push repo to Github.
-```
+To Pull the Github repo automatically when some developers push repo to Github.
+
+ ```
 #POST-COMMIT HOOK
 
 #!/bin/bash
