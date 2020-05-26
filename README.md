@@ -16,7 +16,7 @@ ________________________________________________________________________________
 
 ### Once you’ve got a grasp on the basics of k8s, you’ll likely want to start taking advantage of the advanced functionality and features.
 
-#### 1. Sidecars
+### 1. Sidecars
 
 Sidecars are a feature that enables you to run an additional container within a pod to be used as a watcher or proxy. You use this extra container to direct data to be mounted and exposed to other containers in the pod. For example, sidecars could be used to handle logging or authentication for a primary container. Sidecars are useful when you want to allow related processes within a pod to communicate without modifying the primary container source code.
 
