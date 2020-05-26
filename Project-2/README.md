@@ -89,7 +89,7 @@ EXPOSE 8080
 
 - FROM is used for the image to be used
 - RUN is used for executing command while building the new image, so that features will be pre installed
-- CMD  is used to run a=command at the run time not at the build time and only one CMD should be there in one Dockerfile
+- CMD  is used to run a command at the run time not at the build time and only one CMD should be there in one Dockerfile.
 - Expose is used to expose the docker port as docker is isolated we have to enable Port Address Translation and is also used to inform  that which port is exposed to the other techonolgies or tools or commands.
 - COPY is used to copy the file from the base os to image at build time.
 - IN THE DIRECTORY WHERE YOU HAVE COPIED this,  THE `mail.rc` and  `check_forext.py` should be copied there only as per my defined Dockerfile.
@@ -100,7 +100,7 @@ EXPOSE 8080
 `docker run -it -P --name containername imagename:version`
 - YOU CAN ACCESS THE JENKINS FROM:
 -base os using `BASEDOCKERHOSTIP:PORT MAPPED`.
-- You can see the port number to which 8080 port of the container is mapped using `netstat -tnlp`.
+- You can see the port number to which `8080` port of the container is mapped using `netstat -tnlp`.
 _________________________________________________________________________________________________________
 
 ### Step-2:
@@ -122,15 +122,13 @@ To Pull the Github repo automatically when some developers push repo to Github.
 
 git push
 ```
-- FIRST OF ALL NEED TO CONFIGURE JENKINS i.e. Putting the initial password , and
-- enbale KEY-BASED AUTHENTICATION with Remote host
-- ssh-keygen  (on ssh client side i.e.  our jenkin container)
-- and copy this key to remote host ie in case our base os where docker is installed
-- ssh-copy-id root@IP   (IP of ur baseos)  
-- INORDER  TO PREVENT FROM ENTERING  THE PASSWORD AGAIN AND AGAIN FOR REMOTE LOGIN.
 
-- Install Github , BUILD PIPELINE, DELIVERY PIPELINE And GIT PULL REQUEST BUILDER plugins in JENKIN.
-- One should have some knowledge of JENKINS , GITHUB AND GIT AND DOCKER.
+- FIRST OF ALL NEED TO CONFIGURE JENKINS i.e. Putting the initial password , and enable `KEY-BASED AUTHENTICATION` with Remote host `ssh-keygen`.(on ssh client side i.e. our jenkin container)
+- Copy this key to remote host ie in case our base os where docker is installed `ssh-copy-id root@IP`.(IP of ur baseos)  
+
+- INORDER  TO PREVENT FROM ENTERING THE PASSWORD AGAIN AND AGAIN FOR REMOTE LOGIN.
+- Install Github, BUILD PIPELINE, DELIVERY PIPELINE And GIT PULL REQUEST BUILDER plugins in JENKIN.
+- One should have some knowledge of JENKINS, GITHUB AND GIT AND DOCKER.
 
 ### JENKINS JOB 1 SCRIPT:
 
@@ -148,8 +146,8 @@ ________________________________________________________________________________
 By looking at the code or program file,
 
 - Jenkins should automatically start the respective language interpreter install image container to deploy code.
-- eg. If code is of  PHP, then Jenkins should start the container that has PHP already installed.
-- we can also use "file -s filename" to check for the content of the file also but i have created it for html js and php pages using different approach.
+- eg. If code is of PHP, then Jenkins should start the container that has PHP already installed.
+- We can also use `"file -s filename"` to check for the content of the file also but i have created it for html js and php pages using different approach.
 
 ### JENKINS JOB 2 SCRIPT:
 
@@ -211,7 +209,7 @@ Job4 : if app is not working , then send email to developer with error messages.
 
 - `test_php` and `test_html` are testing env.
 - `prod_php` and `prod_html` are production env.
-- I used `mailx` to send the mail i have done all the configurations in jenkins server regarding the mailx.
+- I used `mailx` to send the mail I have done all the configurations in jenkins server regarding the mailx.
 
 ```
 no_html=0
