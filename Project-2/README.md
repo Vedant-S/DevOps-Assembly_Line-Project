@@ -9,7 +9,7 @@
 # The Project:-
 ----------------------------------
 
-# Python Code:
+### Python Code:
 
 ```
 import os
@@ -48,7 +48,7 @@ print("OTHER FILES:",len(all_files)-len(all_phps)-len(all_htmls))
 ```
 _________________________________________________________________________________________________________
 
-# Mail.rc Code:
+### Mail.rc Code:
 
 ```
 set smtp=smtps://smtp.gmail.com:465
@@ -122,7 +122,7 @@ ________________________________________________________________________________
 Create a job chain of job1, job2, job3, job4 and job5 using build pipeline plugin in Jenkins.
 _________________________________________________________________________________________________________
 
-# Job-1 Description:
+### Job-1 Description:
 
 - To Pull the Github repo automatically when some developers push repo to Github.
 
@@ -143,7 +143,7 @@ git push
 - install Github , BUILD PIPELINE, DELIVERY PIPELINE And GIT PULL REQUEST BUILDER plugins in JENKIN.
 - One should have some knowledge of JENKINS , GITHUB AND GIT AND DOCKER.
 
-# JENKINS JOB 1 SCRIPT:
+### JENKINS JOB 1 SCRIPT:
 
 ```
 rm -rvf /storage/
@@ -154,7 +154,7 @@ python3 /workdir/check_forext.py
 ```
 _________________________________________________________________________________________________________
 
-# Job-2 Description:
+### Job-2 Description:
 
 By looking at the code or program file,
 
@@ -162,7 +162,7 @@ By looking at the code or program file,
 - eg. If code is of  PHP, then Jenkins should start the container that has PHP already installed.
 - we can also use "file -s filename" to check for the content of the file also but i have created it for html js and php pages using different approach.
 
-# JENKINS JOB 2 SCRIPT:
+### JENKINS JOB 2 SCRIPT:
 
 ```
 isempty_html=0
@@ -213,7 +213,7 @@ fi
 ```
 _________________________________________________________________________________________________________
 
-# Job 3 & 4 Description:
+### Job 3 & 4 Description:
 
 - I HAVE COMBINED BOTH THE JOBS so that AFTER testing the Deployment is done if no issues.
 
@@ -295,7 +295,7 @@ fi
 ```
 _________________________________________________________________________________________________________
 
-# Job-5 Description: Job to monitor.
+### Job-5 Description: Job to monitor.
 
 - If container where app is running. fails due to any reason then this job should automatically start the container again.
 
@@ -333,5 +333,5 @@ ________________________________________________________________________________
 ### Author:
 ----------------------------------
 ```diff
-- Vedant Shrivastava | vedantshrivastava466@gmail.com
++ Vedant Shrivastava | vedantshrivastava466@gmail.com
 ```
