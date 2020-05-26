@@ -1,4 +1,4 @@
-# Linux World DevOps Training - Assignment
+# Linux World DevOps Project-2:
 ----------------------------------
 
 ### Prerequisites:
@@ -10,6 +10,8 @@
 ----------------------------------
 
 ### Python Code:
+
+- check_forext.py
 
 ```
 import os
@@ -86,32 +88,22 @@ COPY  ./mail.rc  /etc/mail.rc
 RUN echo -e "jenkins ALL(=ALL) NOPASSWD: ALL" >> /etc/sudoers
 CMD java -jar /usr/lib/jenkins/jenkins.war
 EXPOSE 8080
-
-#FROM is used for the image to be used
-
-#RUN is used for executing command while building the new image, so that features will be pre installed
-
-#CMD  is used to run a=command at the run time not at the build time and only one CMD should be there in one Dockerfile
-
-#Expose is used to expose the docker port as docker is isolated we have to enable Port Address Translation
-#and is also used to inform  that which port is exposed to the other techonolgies or tools or commands.
-
-#COPY is used to copy the file from the base os to image at build time.
-
-#IN THE DIRECTORY WHERE YOU HAVE COPIED this,  THE mail.rc and  check_forext.py should be copied there only as per my defined Dockerfile
-
-# TO BUILD THE IMAGE USE THE COMMAND :
-
-#docker build -t imagename:version  folder where the Dockerfile u have copied.
-
-#and for running the conatiner from this image use command:
-
-#docker run -it -P --name containername imagename:version
-
-#U CAN ACCESS THE JENKINS FROM
-#base os using BASEDOCKERHOSTIP:PORT MAPPED.
-#u can see the port number to which 8080 port of the container is mapped using netstat -tnlp
 ```
+
+- FROM is used for the image to be used
+- RUN is used for executing command while building the new image, so that features will be pre installed
+- CMD  is used to run a=command at the run time not at the build time and only one CMD should be there in one Dockerfile
+- Expose is used to expose the docker port as docker is isolated we have to enable Port Address Translation and is also used to inform  that which port is exposed to the other techonolgies or tools or commands.
+- COPY is used to copy the file from the base os to image at build time.
+- IN THE DIRECTORY WHERE YOU HAVE COPIED this,  THE `mail.rc` and  `check_forext.py` should be copied there only as per my defined Dockerfile.
+
+- TO BUILD THE IMAGE USE THE COMMAND :
+`docker build -t imagename:version` folder where the Dockerfile u have copied.
+- For running the conatiner from this image use command:
+`docker run -it -P --name containername imagename:version`
+- U CAN ACCESS THE JENKINS FROM:
+-base os using `BASEDOCKERHOSTIP:PORT MAPPED`.
+- U can see the port number to which 8080 port of the container is mapped using `netstat -tnlp`.
 _________________________________________________________________________________________________________
 
 # Step-2:
@@ -125,7 +117,6 @@ ________________________________________________________________________________
 ### Job-1 Description:
 
 - To Pull the Github repo automatically when some developers push repo to Github.
-
 ```
 #POST-COMMIT HOOK
 
@@ -140,7 +131,7 @@ git push
 - ssh-copy-id root@IP   (IP of ur baseos)  
 - INORDER  TO PREVENT FROM ENTERING  THE PASSWORD AGAIN AND AGAIN FOR REMOTE LOGIN.
 
-- install Github , BUILD PIPELINE, DELIVERY PIPELINE And GIT PULL REQUEST BUILDER plugins in JENKIN.
+- Install Github , BUILD PIPELINE, DELIVERY PIPELINE And GIT PULL REQUEST BUILDER plugins in JENKIN.
 - One should have some knowledge of JENKINS , GITHUB AND GIT AND DOCKER.
 
 ### JENKINS JOB 1 SCRIPT:
@@ -217,12 +208,12 @@ ________________________________________________________________________________
 
 - I HAVE COMBINED BOTH THE JOBS so that AFTER testing the Deployment is done if no issues.
 
-- Job3 : Test your app if it  is working or not.
-- Job4 : if app is not working , then send email to developer with error messages.
+Job3 : Test your app if it  is working or not.
+Job4 : if app is not working , then send email to developer with error messages.
 
-- test_php and test_html are testing env.
-- prod_php and prod_html are production env.
-- I used mailx to send the mail i have done all the configurations in jenkins server regarding the mailx.
+- `test_php` and `test_html` are testing env.
+- `prod_php` and `prod_html` are production env.
+- I used `mailx` to send the mail i have done all the configurations in jenkins server regarding the mailx.
 
 ```
 no_html=0
@@ -297,7 +288,7 @@ ________________________________________________________________________________
 
 ### Job-5 Description: Job to monitor.
 
-- If container where app is running. fails due to any reason then this job should automatically start the container again.
+- If container where app is running, fails due to any reason then this job should automatically start the container again.
 
 ```
 if ssh root@IP docker ps | grep test_php
