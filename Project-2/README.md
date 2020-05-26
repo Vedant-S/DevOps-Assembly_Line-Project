@@ -205,7 +205,7 @@ ________________________________________________________________________________
 
 - I HAVE COMBINED BOTH THE JOBS so that AFTER testing the Deployment is done if no issues.
 
-Job3 : Test your app if it  is working or not.
+Job3 : Test your app if it  is working or not.<br>
 Job4 : if app is not working , then send email to developer with error messages.
 
 - `test_php` and `test_html` are testing env.
