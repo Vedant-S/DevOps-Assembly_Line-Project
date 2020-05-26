@@ -31,7 +31,7 @@ if len(all_htmls)>0:
     os.system("ssh root@192.168.29.62 rm -rf /htmltest_storatie/")
     os.system("ssh root@192.168.29.62 mkdir /htmltest_storage/")
     for htm in all_htmls:
-        os.system(f"scp {htm}  192.168.29.62:/htmltest_storage")
+        os.system("fscp {htm}  192.168.29.62:/htmltest_storage")
 if len(all_phps)>0:
     os.system("ssh root@192.168.29.62 rm -rf /phptest_storage/")
     os.system("ssh root@192.168.29.62 mkdir /phptest_storage/")
