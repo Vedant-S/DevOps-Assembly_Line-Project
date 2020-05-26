@@ -47,7 +47,7 @@ print("OTHER FILES:",len(all_files)-len(all_phps)-len(all_htmls))
 ```
 _________________________________________________________________________________________________________
 
-### Mail.rc Code:
+### Mailing Code:
 
 - `mail.rc`
 
