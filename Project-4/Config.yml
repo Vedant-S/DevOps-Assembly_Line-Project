@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Config
+
+clusters:
+- cluster:
+    certificate-authority: /home/jenkins/ca.crt
+    server: https://192.168.99.100:8443
+  name: cluster1
+
+contexts:
+- context:
+    cluster: cluster1
+    user: jenkins
+
+users:
+- name: jenkins
+  user:
+    client-certificate: /home/jenkins/client.crt
+    client-key: /home/jenkins/client.key

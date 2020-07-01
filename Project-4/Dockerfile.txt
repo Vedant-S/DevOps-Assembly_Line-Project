@@ -1,0 +1,35 @@
+FROM centos
+RUN yum install sudo -y
+# Macking Package-repository up to date
+RUN yum update -qy
+RUN yum install  git -y
+# Installing a SSH Server 
+RUN yum install -y openssh-server
+RUN mkdir -p /var/run/sshd
+# Installing JDK 
+RUN yum install java-11-openjdk-devel -y
+# Creating and adding Jenkins user
+RUN useradd jenkins 
+RUN echo "jenkins:jenkins" | chpasswd
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g'  -i /etc/pam.d/sshd
+RUN mkdir /home/jenkins/.m2
+RUN echo "jenkins ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/jenkins
+RUN chmod 0440 /etc/sudoers.d/jenkins
+RUN ssh-keygen -A
+ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
+RUN rm /run/nologin
+RUN chown -R jenkins:jenkins /home/jenkins/.m2/
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+RUN chmod +x kubectl
+RUN cp kubectl /usr/bin
+WORKDIR /home/jenkins
+COPY ca.crt /home/jenkins
+COPY client.crt /home/jenkins
+COPY client.key /home/jenkins
+COPY Config.yml /root/.kube/config
+
+RUN sudo chown -R jenkins /root/.kube 
+
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
