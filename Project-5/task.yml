@@ -1,0 +1,74 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prom-graf-deploy
+spec:
+  selector:
+    matchLabels:
+      pod: prom-graf
+
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        pod: prom-graf
+
+
+    spec:
+      containers:
+      - name: prom-con1
+        image: Vedant-S/prometheus_ubuntu:v2
+ 
+        ports:
+        - containerPort: 9090
+
+
+        volumeMounts:
+          - name: prom-vol
+            mountPath: /data/
+
+      - name: graf-con1
+        image: grafana/grafana
+  
+        ports:
+        - containerPort: 3000
+
+        volumeMounts:
+          - name: graf-vol
+            mountPath: /var/lib/grafana/
+
+
+
+      volumes:
+      - name: prom-vol
+        persistentVolumeClaim:
+          claimName: prometheus-pvc
+    
+      - name: graf-vol
+        persistentVolumeClaim:
+          claimName: grafana-pvc
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-provider
+spec:
+  type: NodePort
+  selector:
+    pod: prom-graf
+
+
+  ports:
+  - port: 9090
+    protocol: TCP
+    name: prom-port
+
+  - port: 3000
+    protocol: TCP
+    name: graf-port
+
+---
