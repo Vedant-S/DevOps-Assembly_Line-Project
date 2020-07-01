@@ -23,7 +23,7 @@ ________________________________________________________________________________
   3. Creating persistent storage: In this process we will mount PVCs to the pods to store the data permanently if in case, server collects some data like logs, other user information.
 
 `Job3` : Testing the app, if it is working or not. If the app is not working , then an email will be sent to developer with error messages and the app will be redeployed after the code have been edited by the developer.
-
+____________________________________________________________________________________________________________________
 `Developer site:`
 
 `Step 1`: Pushing the Code to Github repository: Created git hooks for post-commit push. I have used two git repository:
@@ -38,7 +38,7 @@ ________________________________________________________________________________
 - Deployment Code: It contains the definition of pod which includes its name, the image which will be used to launch the container in the pod, the mount path of the Persistent volume created in the previous step and the services using which this pod will be exposed.
 
 `This is it at the developer site.`
-
+____________________________________________________________________________________________________________________
 `Operational site:`
 
 - I am using jenkins to create a Code Pipeline. Through this, an environment of Continuous integeration and continuos delievery will be setup. This jenkins is setup inside a pod which is managed by Deployment controller in Kubernetes.
@@ -56,7 +56,7 @@ Note: To configure kubectl in this image, you have to transfer the certificates 
 - Config file for configuring the kubectl.
 - Build this Image using command: In this user_name is the user name of your docker account.
 - Upload this image in the docker hub Registry
-
+____________________________________________________________________________________________________________________
 `Next step is to create the Deployment file (filename.yml) which will create a pod using this image. Start writing following code snippets.`
 
 `Step 1`: Creating a NodePort Service.
@@ -70,7 +70,7 @@ Now, Create this deployment using command:
 `kubectl create -f filename.yml`
 
 After the Pod is setup successfully, Access the jenkins server on the port: 192.168.99.100:30000.
-
+____________________________________________________________________________________________________________________
 In jenkins, download the Github, Git Plugin, Job DSL plugin and configure the email settings in the jenkins and then proceed to followining steps:
 
 `Project methodology`: In the process of Configuration as code, We will create a job in jenkins, this job will download the groovy script, which will contain the configuration of other jobs job 1, job 2 and job 3. The purpose of this job is to download the groovy script is to run it, which in turn will create these 3 main jobs required for CI/CD Pipeline. This job which will create other jobs is called seed job.
@@ -86,7 +86,7 @@ Create a file named `config.groovy` and start writing following job definitions 
 - Create the seed job. It is simply just another job in jenkins, no difference. The job definition is:
 - Save and build the Seed Job and Thats it. All the other jobs Job 1, Job 2 and Job 3 will be created automatically and will build automatically in the order.
 - Output the seed job:
-
+____________________________________________________________________________________________________________________
 I have also created a build Pipeline and for this project I have enabled `Poll SCM` in the seed job. So whenever there is any update in the application repository, the application to the client will be updated automatically.
 ____________________________________________________________________________________________________________________
 ### Author:
