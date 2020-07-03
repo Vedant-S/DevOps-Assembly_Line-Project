@@ -28,7 +28,7 @@ ________________________________________________________________________________
 
 `Step 1`: Pushing the Code to Github repository: Created git hooks for post-commit push. I have used two git repository:
 
-- Git Repo containing application Code: This coontains all the data and code related to the application which will be deployed.
+- Git Repo containing application Code: This contains all the data and code related to the application which will be deployed.
 - Git repo containing Deployment Code.
 
 `Deployment Code contains:`
