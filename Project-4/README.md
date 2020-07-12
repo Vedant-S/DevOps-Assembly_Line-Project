@@ -17,21 +17,21 @@ ________________________________________________________________________________
 5.2  If Application created first time, then Expose the application. Else don’t expose it.
 ____________________________________________________________________________________________________________________
 ### Essential Requirements:
-`1` SSH and JNLP protocol for use in Redhat and Windows connection.
-`2` Concept of slave/agent program explained and requirement of storage area/path information.
+`1` SSH and JNLP protocol for use in Redhat and Windows connection.</br>
+`2` Concept of slave/agent program explained and requirement of storage area/path information.</br>
 `3` Configuring slave nodes Redhat and Windows, using Redhat IP-Ssh key, and Windows JNLP(JAVA Network Launching Protocol).
-term Dynamic Distributed Job Cluster.
-`4` Knowledge of Docker Services server and Docker client.
-`5` Idea of fd:// in docker daemon, which has no tcp support and current Docker config which has no socket/network support.
-`6` Necessity to alter 'docker.service' file to add tcp port and IP address.
-`7` Idea about reload of daemon in linux and Docker.
-`8` Changing of DOCKER_HOST variable.
-`9` Setup docker within Jenkins with appropriate plugins.
-`10` Setup/configuration of Cloud services for jenkins to link to remote Docker server as dynamic slave node.
-`11` Setup ssh-key gen and pulled appropriate image from docker hub.
+term Dynamic Distributed Job Cluster.</br>
+`4` Knowledge of Docker Services server and Docker client.</br>
+`5` Idea of fd:// in docker daemon, which has no tcp support and current Docker config which has no socket/network support.</br>
+`6` Necessity to alter 'docker.service' file to add tcp port and IP address.</br>
+`7` Idea about reload of daemon in linux and Docker.</br>
+`8` Changing of DOCKER_HOST variable.</br>
+`9` Setup docker within Jenkins with appropriate plugins.</br>
+`10` Setup/configuration of Cloud services for jenkins to link to remote Docker server as dynamic slave node.</br>
+`11` Setup ssh-key gen and pulled appropriate image from docker hub.</br>
 ______________________________________________________________________________________________________
 ### STEPS:
-
+______________________________________________________________________________________________________
 `Step 1`:
 - Create a local git repo.
 - Write a Dockerfile for creating a docker image which will have httpd installed in it for deploying our webserver.
@@ -75,7 +75,7 @@ RUN sudo chown -R jenkins /root/.kube
 EXPOSE 22  
 CMD ["/usr/sbin/sshd", "-D"]
 ```
-
+______________________________________________________________________________________________________
 `Step 2`: Start jenkins and Create Job 1:
 This job will automatically run as soon as the developer commit code on git.
 - Specify the GitHub repository from where the code is to be downloaded.
@@ -89,14 +89,14 @@ RUN yum install httpd -y
 CMD [ "/usr/sbin/httpd","-D","FOREGROUND" ]
 Expose 80
 ````
-
+______________________________________________________________________________________________________
 `Step 3`: Create Dockerfile for Kubernetes slave:
 - This dockerfile will create a docker image that will be used by jenkins to launch a slave node.
 - To built the docker file use the command:
 `docker build -t suhani15/kubectl:v1`
-
+______________________________________________________________________________________________________
 `Step 4`: Create a Config.yml file for Kubernetes.
-
+______________________________________________________________________________________________________
 `Step 5`: Configure jenkins for launching a slave node.
 - Go to Manage Jenkins --> Manage nodes and cloud.
 - Then configure it as doe in the following images.
@@ -104,13 +104,13 @@ Expose 80
 In the Docker Host URI we have specified the `IP` of docker server but by default docker does not allow anyone to use it's server, and so that it can allow jenkins to use it we have to configure `docker.service` file which is in the directory:
 
 - `/usr/lib/systemd/system/docker.service`
-
+______________________________________________________________________________________________________
 `Step 6`: Create Job 2 :
 - Restrict the project to run in the slave node by specifying the label of the cloud we had configured.
 - Build a trigger for running this job after the first job.
 - In the execute shell write the code for creating deployment, scaling it and exposing it only it doesn't already exist. We can also use code snippet for doing all these and run the code file in the execute shell.
 - On building this job a slave node will be launched.
-
+______________________________________________________________________________________________________
 `Step 7`: Build Pipeline View.
 ____________________________________________________________________________________________________________________
 ### Author:
