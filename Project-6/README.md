@@ -2,6 +2,9 @@
 ____________________________________________________________________________________________________________________
 ### CI/CD Auto Deployment Pipeline with Groovy, Jenkins to deploy applications on Kubernetes according to their respective language interpreter with auto testing:
 ____________________________________________________________________________________________________________________
+Further, deploy applications on Kubernetes according to their respective language interpreter with auto testing.
+<img src="https://miro.medium.com/max/2772/1*GrauvM0qGnsxJTP5WFu7Fg.png" width=500 height=200>
+____________________________________________________________________________________________________________________
 ### PROBLEM STATEMENT:
 In this Project, we will be using Tools such as Github, Jenkins, Kubernetes, Docker Language used for creating and managing the Pipeline will be Groovy. We will use jenkins inbuilt plugin Job DSL for configuring jobs.
 
@@ -10,7 +13,9 @@ The Job DSL plugin attempts to solve this problem by allowing jobs to be defined
 Job DSL/Plugin, a project made up of two parts: the Domain Specific Language that allows users to describe jobs using Groovy-based language, and a Jenkins plugin which manages the scripts and the updating of Jenkins jobs which are created and maintained as a result.
 
 ____________________________________________________________________________________________________________________
-### List of Jobs (Task) to perform in this project:
+### List of Jobs (Task) to perform in this project
+____________________________________________________________________________________________________________________
+<img src="https://www.jenkins.io/images/post-images/vscode-pipeline-linter/example1.gif">
 ____________________________________________________________________________________________________________________
 `Job1` : Pull the Github repo automatically when some developers push repo to Github.
 
@@ -36,6 +41,69 @@ ________________________________________________________________________________
 - Nodeport Service, through which the pod will be exposed.
 - Persistent Volume which will be attached to the pod.
 - Deployment Code: It contains the definition of pod which includes its name, the image which will be used to launch the container in the pod, the mount path of the Persistent volume created in the previous step and the services using which this pod will be exposed.
+_________________________________________________________________________________________________________________________________________
+
+     apiVersion: v1
+     kind: Service
+     metadata:
+       name: webserver-service
+       labels:
+         app: httpd
+     spec:
+       ports:
+         - nodePort: 30002
+           port: 80
+           targetPort: 80
+       selector:
+         app: httpd
+         tier: web
+       type: NodePort
+     ---
+     apiVersion: v1
+     kind: PersistentVolumeClaim
+     metadata:
+       name: httpdweb2-pv-claim
+       labels:
+         app: httpd
+     spec:
+       accessModes:
+         - ReadWriteOnce
+       resources:
+         requests:
+           storage: 1Gi
+     ---
+     apiVersion: apps/v1
+     kind: Deployment
+     metadata:
+       name: httpd-g-web
+       labels:
+         app: httpd
+     spec:
+       selector:
+         matchLabels:
+           app: httpd
+           tier: web
+       strategy:
+         type: Recreate
+       template:
+         metadata:
+           labels:
+             app: httpd
+             tier: web
+         spec:
+           containers:
+           - image: vimal13/apache-webserver-php
+             name: httpd-g-web
+             ports:
+             - containerPort: 80
+               name: httpd-g-web
+             volumeMounts:
+             - name: httpd-web-persistent-storage
+               mountPath: /var/www/html
+           volumes:
+           - name: httpd-web-persistent-storage
+             persistentVolumeClaim:
+               claimName: httpdweb2-pv-claim
 
 `This is it at the developer site.`
 ____________________________________________________________________________________________________________________
@@ -86,6 +154,86 @@ Create a file named `config.groovy` and start writing following job definitions 
 - Create the seed job. It is simply just another job in jenkins, no difference. The job definition is:
 - Save and build the Seed Job and Thats it. All the other jobs Job 1, Job 2 and Job 3 will be created automatically and will build automatically in the order.
 - Output the seed job:
+____________________________________________________________________________________________________________________
+```
+    job('G Job1') {
+        description('Job1')
+     scm {
+             github('anmol-sinha-coder/Sample-Website','master')
+        }
+        steps {
+             shell("cp * -vrf /home/jenkins")
+          }
+       triggers {
+             scm('* * * * *')
+          }
+     triggers {
+              upstream('Admin Job (Seed)', 'SUCCESS')
+           }
+    }
+
+    job('G Job2') {
+        description('Job2')
+     scm {
+             github('Vedant-S/DevOps-Assembly_Line-Project/tree/master/Project-6','master')
+          }
+     triggers {
+              upstream('G Job1', 'SUCCESS')
+           }
+     steps {
+             shell('''
+       if  ls /home/jenkins | grep php
+       then
+         if kubectl get deployment --selector "app in (httpd)" | grep httpd-web
+            then
+          kubectl apply -f Deployment.yml
+             else
+                        kubectl create -f Deployment.yml
+             fi
+             POD=$(kubectl get pod -l app=httpd -o jsonpath="{.items[0].metadata.name}")
+             kubectl cp /home/jenkins/index.php ${POD}:/var/www/html
+       fi
+       ''')
+           }
+
+    }
+    job('G Job3') {
+        description('Job3')
+     triggers {
+              upstream('G Job2', 'SUCCESS')
+           }
+        steps {
+            shell('''
+      status=$(curl -o /dev/null -s -w "%{http_code}" http://192.168.99.100:30002)
+      if [[ $status == 200 ]]
+      then
+       exit 0
+      else
+       exit 1
+          fi
+      ''')
+            }
+      publishers {
+            extendedEmail {
+                recipientList('vedantshrivastava466@gmail.com')
+                defaultSubject('Job status')
+               attachBuildLog(attachBuildLog = true)
+                defaultContent('Status Report')
+                contentType('text/html')
+                triggers {
+                    always {
+                        subject('build Status')
+                        content('Body')
+                        sendTo {
+                            developers()
+                            recipientList()
+                        }
+                    }
+                }
+            }
+        }
+    }
+```   
 ____________________________________________________________________________________________________________________
 I have also created a build Pipeline and for this project I have enabled `Poll SCM` in the seed job. So whenever there is any update in the application repository, the application to the client will be updated automatically.
 ____________________________________________________________________________________________________________________

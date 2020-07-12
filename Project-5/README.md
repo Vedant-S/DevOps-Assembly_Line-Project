@@ -2,6 +2,8 @@
 ____________________________________________________________________________________________________________________
 ### Prometheus Grafana Integration:
 ____________________________________________________________________________________________________________________
+# <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTZfasd4cKMF_H222ed1Pz5S6o-QJ5M7Nj72w&usqp=CAU" width=100 height=100>Jenkins integration with Prometheus - Grafana <img src="https://www.influxdata.com/wp-content/uploads/Prometheus-1.png" width=100 height=100>
+____________________________________________________________________________________________________________________
 ### PROBLEM STATEMENT:
 Integrate Prometheus and Grafana and perform in following way:
 1. Deploy them as pods on top of Kubernetes by creating resources Deployment, ReplicaSet, Pods or Services.
@@ -11,6 +13,8 @@ Integrate Prometheus and Grafana and perform in following way:
 ### Prerequisite:
 - `Minikube and kubectl configured if not follow this link:` https://kubernetes.io/docs/setup/learning-environment/minikube/
 - One Node for matrices.
+## GENERAL CONCEPTS:
+![Differences](https://cloud.vmware.com/community/wp-content/uploads/9/sites/9/2018/03/Metrics-vs-Logs-fig-1.png)
 ____________________________________________________________________________________________________________________
 ### STEPS:
 
@@ -234,6 +238,7 @@ Explanation: specifies the common resources and common customizations to those r
 
 `Step 7`: Now let's test whether our data is permanent or not.
 - Open command prompt and delete the pod of grafana.
+
 ```
 Explanation: Here you can see our pod has been deleted, and after that it starts new pod this is because we already use deployment, if pod is deleted deployment start new ones, here U can see for some second our data , dashboard has gone.
 ```

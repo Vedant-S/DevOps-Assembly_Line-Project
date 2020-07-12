@@ -16,6 +16,20 @@ ________________________________________________________________________________
 5.1 If launching first time then create a deployment of the pod using the image created in the previous job. Else if deployment already exists then do rollout of the existing pod making zero downtime for the user.<br><br>
 5.2  If Application created first time, then Expose the application. Else don’t expose it.
 ____________________________________________________________________________________________________________________
+### Essential Requirements:
+`1` SSH and JNLP protocol for use in Redhat and Windows connection.
+`2` Concept of slave/agent program explained and requirement of storage area/path information.
+`3` Configuring slave nodes Redhat and Windows, using Redhat IP-Ssh key, and Windows JNLP(JAVA Network Launching Protocol).
+term Dynamic Distributed Job Cluster.
+`4` Knowledge of Docker Services server and Docker client.
+`5` Idea of fd:// in docker daemon, which has no tcp support and current Docker config which has no socket/network support.
+`6` Necessity to alter 'docker.service' file to add tcp port and IP address.
+`7` Idea about reload of daemon in linux and Docker.
+`8` Changing of DOCKER_HOST variable.
+`9` Setup docker within Jenkins with appropriate plugins.
+`10` Setup/configuration of Cloud services for jenkins to link to remote Docker server as dynamic slave node.
+`11` Setup ssh-key gen and pulled appropriate image from docker hub.
+______________________________________________________________________________________________________
 ### STEPS:
 
 `Step 1`:
@@ -26,11 +40,55 @@ ________________________________________________________________________________
 - Run the commands listed on the page in git bash after you have added and committed to local git.
 - Create post-commit where you will specify what has to to done after you commit the code on local git. ex. I have used git push which will automatically push the code to GitHub as soon it is commited and then a trigger which will run the first job of jenkins.
 
+```
+FROM centos
+RUN yum install sudo -y
+# Macking Package-repository up to date
+RUN yum update -qy
+RUN yum install  git -y
+# Installing a SSH Server
+RUN yum install -y openssh-server
+RUN mkdir -p /var/run/sshd
+# Installing JDK
+RUN yum install java-11-openjdk-devel -y
+# Creating and adding Jenkins user
+RUN useradd jenkins
+RUN echo "jenkins:jenkins" | chpasswd
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g'  -i /etc/pam.d/sshd
+RUN mkdir /home/jenkins/.m2
+RUN echo "jenkins ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/jenkins
+RUN chmod 0440 /etc/sudoers.d/jenkins
+RUN ssh-keygen -A
+ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
+RUN rm /run/nologin
+RUN chown -R jenkins:jenkins /home/jenkins/.m2/
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+RUN chmod +x kubectl
+RUN cp kubectl /usr/bin
+WORKDIR /home/jenkins
+COPY ca.crt /home/jenkins
+COPY client.crt /home/jenkins
+COPY client.key /home/jenkins
+COPY config.yml /root/.kube/config
+RUN sudo chown -R jenkins /root/.kube
+EXPOSE 22  
+CMD ["/usr/sbin/sshd", "-D"]
+```
+
 `Step 2`: Start jenkins and Create Job 1:
 This job will automatically run as soon as the developer commit code on git.
 - Specify the GitHub repository from where the code is to be downloaded.
 - Create trigger , this the same trigger whose URL is specified in the post-commit file.
 - Then write the commands for building the Dockerfile that is downloaded from GitHub and then push the docker image made to Docker Hub.
+````
+FROM centos
+WORKDIR /root/jenk_task4
+COPY . /var/www/html
+RUN yum install httpd -y
+CMD [ "/usr/sbin/httpd","-D","FOREGROUND" ]
+Expose 80
+````
 
 `Step 3`: Create Dockerfile for Kubernetes slave:
 - This dockerfile will create a docker image that will be used by jenkins to launch a slave node.
