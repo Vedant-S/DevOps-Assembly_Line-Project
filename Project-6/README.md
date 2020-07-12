@@ -15,9 +15,8 @@ Job DSL/Plugin, a project made up of two parts: the Domain Specific Language tha
 ____________________________________________________________________________________________________________________
 ### List of Jobs (Task) to perform in this project
 ____________________________________________________________________________________________________________________
-<img src="https://www.jenkins.io/images/post-images/vscode-pipeline-linter/example1.gif">
+<img src="https://www.jenkins.io/images/post-images/vscode-pipeline-linter/example1.gif"></br>
 ____________________________________________________________________________________________________________________
-</br>
 `Job1` : Pull the Github repo automatically when some developers push repo to Github.
 
 `Job2` :
