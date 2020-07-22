@@ -174,10 +174,9 @@ This challenge is solved by Jenkins which serves as a middlemen to automate the 
 
 <img src="https://d2908q01vomqb2.cloudfront.net/7719a1c782a1ba91c031a682a0a2f8658209adbf/2019/10/20/Diagram2.png" align="center">
 
-### Team Members
+### Author:
 ----------------------------------
 ```diff
 ! Vedant Shrivastava | vedantshrivastava466@gmail.com
-+ Anmol Sinha        | 1805553@kiit.ac.in
 ```
-[Go to Anmol's repository](https://github.com/anmol-sinha-coder/DevOps-AL_Assignment)
+
