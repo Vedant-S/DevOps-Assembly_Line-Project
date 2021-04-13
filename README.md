@@ -1,6 +1,6 @@
 <img src="https://miro.medium.com/max/3000/1*mqv03KrlG5LK2XU1uV4LJg.gif" height=100 width=200>
 
-_________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________
 
 DevOps is a set of practices that combines software development (Dev) and information-technology operations (Ops) which aims to shorten the systems development life cycle and provide continuous delivery with high software quality. Demand for the development of dependable, functional apps has soared in recent years. In a volatile and highly competitive business environment, the systems created to support, and drive operations are crucial. Naturally, organizations will turn to their in-house development teams to deliver the programs, apps, and utilities on which the business counts to remain relevant."
 
